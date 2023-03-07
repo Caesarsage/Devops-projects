@@ -1,0 +1,44 @@
+apiVersion: 
+kind: Deployment
+metadata:
+  labels:
+    app: hello-world-rest-api
+  namespace: default
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: hello-world-rest-api
+  strategy:
+    rollingUpdate:
+      maxSurge: 24%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: hello-world-rest-api
+    spec:
+      containers:
+      - image: caesarsage/hello-world-rest-api:0.0.4-SNAPSHOT
+        imagePullPolicy: IfNotPresent
+        name: hello-world-rest-api
+      restartPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: hello-world-rest-api
+  name: hello-world-rest-api
+  namespace: default
+spec:
+  selector:
+    app: hello-world-rest-api
+  ports:
+  - nodePort: 30702
+    port: 8080
+    protocol: TCP
+    targetPort: 8080
+  type: LoadBalancer
+    
