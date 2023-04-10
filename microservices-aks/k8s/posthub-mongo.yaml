@@ -1,0 +1,58 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name:  ns-posthub--env--
+  labels:
+    name: ns-posthub--env--
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name:  posthub-mongo
+  namespace: ns-posthub--env--
+  labels:
+    name:  posthub-mongo
+spec:
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      name: posthub-mongo
+  template:
+    metadata:
+      labels:
+        name:  posthub-mongo
+    spec:
+      containers:
+      - image:  mongo
+        name:  posthub-mongo
+        resources:
+          requests:
+            cpu: "250m"
+            memory: "250Mi"
+          limits:
+            cpu: "1500m"
+            memory: "2500M"    
+        ports:
+        - containerPort:  27017
+          name:  posthub-mongo
+
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name:  posthub-mongo-service
+  namespace: ns-posthub--env--
+spec:
+  selector:
+    name: posthub-mongo
+  type: ClusterIP
+  ports:
+  - name:  posthub-mongo
+    port:  27020
+    targetPort:  27017

@@ -1,0 +1,65 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name:  ns-posthub--env--
+  labels:
+    name: ns-posthub--env--
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nats-eventhub
+  namespace: ns-posthub--env--
+spec:
+  selector:
+    matchLabels:
+      app: nats-eventhub
+  template:
+    metadata:
+      labels:
+        app: nats-eventhub
+    spec:
+      containers:
+      - name: nats-eventhub
+        image: nats-streaming:0.24.0
+        args: [
+          '-p',
+          '4222',
+          '-m',
+          '8222',
+          '-hbi',
+          '5s',
+          '-hbf',
+          '2',
+          '-SD',
+          '-cid',
+          'posthubcluster',
+        ]
+        resources:
+          requests:
+            memory: "500Mi"
+            cpu: "500m"
+          limits:
+            memory: "2000Mi"
+            cpu: "1500m"
+
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name:  nats-eventhub-service
+  namespace: ns-posthub--env--
+spec:
+  selector:
+    app:  nats-eventhub
+  type:  ClusterIP
+  ports:
+  - name:  client
+    port:  4222
+    targetPort:  4222
+    protocol: TCP
+  - name:  monitoring
+    port:  8222
+    targetPort:  8222
+    protocol: TCP

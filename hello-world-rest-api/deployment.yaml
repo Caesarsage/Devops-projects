@@ -1,14 +1,18 @@
 apiVersion: 
 kind: Deployment
 metadata:
+  name: hello-world-rest-api-v1
   labels:
     app: hello-world-rest-api
+    version: v1
   namespace: default
 spec:
   replicas: 2
+  minReadySeconds: 45
   selector:
     matchLabels:
       app: hello-world-rest-api
+      version: v1
   strategy:
     rollingUpdate:
       maxSurge: 24%
@@ -18,11 +22,12 @@ spec:
     metadata:
       labels:
         app: hello-world-rest-api
+        version: v1
     spec:
       containers:
       - image: caesarsage/hello-world-rest-api:0.0.4-SNAPSHOT
         imagePullPolicy: IfNotPresent
-        name: hello-world-rest-api
+        name: hello-world-rest-api-v1
       restartPolicy: Always
 ---
 apiVersion: v1
