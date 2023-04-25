@@ -2,7 +2,7 @@
 Darey.io Project Based Learning
 The following projects will be implemented
 
-- ## Project 1: [ LAMP STACK IMPLEMENTATION](./project-01/)
+- ## Project 1: [ LAMP STACK IMPLEMENTATION](./project-01/) [⭐]
 - ## Project 2: [LEMP STACK IMPLEMENTATION](./project-02/)
 - ## Project 3: [MERN WEB STACK IMPLEMENTATION](./project-03/)
 - ## Project 4: [MEAN STACK IMPLEMENTATION](./project-04)
