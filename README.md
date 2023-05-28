@@ -1,4 +1,4 @@
-# DEVOPS PROJECTS AND DOCUMENTATION
+# DEVOPS PROJECTS AND DOCUMENTATIONS
 Darey.io Project Based Learning
 The following projects will be implemented
 
