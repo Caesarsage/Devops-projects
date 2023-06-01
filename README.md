@@ -1,5 +1,8 @@
 # DEVOPS PROJECTS AND DOCUMENTATIONS
-Darey.io Project Based Learning
+Darey.io Project Based Learning.
+
+In attempt to becoming a better DevOps engineer. i will be following similar projects based learning as Darey.io.
+
 The following projects will be implemented
 
 - ## Project 1: [ LAMP STACK IMPLEMENTATION](./project-01/) [⭐]
