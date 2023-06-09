@@ -1,8 +1,0 @@
-dist
-node_modules
-Dockerfile
-.dockerignore
-npm-debug.log
-.git
-.gitignore
-.vscode
