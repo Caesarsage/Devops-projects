@@ -1,6 +1,6 @@
 # LAMP STACK IMPLEMENTATION
 
-## Documentation
+## Documentations
 
 We will be using Ubuntu Virtual Machine through AZURE.
 
@@ -253,3 +253,4 @@ sudo rm /var/www/projectlamp/index.php
 To destroy the VM, go to the Azure portal and delete the resource group.
 
 Explore from here !!!
+-> [Project-02]
