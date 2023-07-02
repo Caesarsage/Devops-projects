@@ -7,8 +7,8 @@ The following projects will be implemented
 
 - ### Project 1: [ LAMP STACK IMPLEMENTATION](./project-01/) [⭐]
 - ### Project 2: [LEMP STACK IMPLEMENTATION](./project-02/) [⭐]
-- ### Project 3: [MERN WEB STACK IMPLEMENTATION](./project-03/)
-- ### Project 4: [MEAN STACK IMPLEMENTATION](./project-04)
+- ### Project 3: [MERN WEB STACK IMPLEMENTATION](./project-03/)[⭐]
+- ### Project 4: [MEAN STACK IMPLEMENTATION](./project-04)[⭐]
 - ### Project 5: [IMPLEMENT A CLIENT SERVER AERCHITECTURE USING MYSQL DATABASE MANAGEMENT SYSTEM](./project-05/)
 - ### Project 6: [ WEB SOLUTION WITH WORDPRESS](./project-06/)
 - ### Project 7: [ DEVOPS TOOLING WEBSITE WITH WORDPRESS](./project-07/)
