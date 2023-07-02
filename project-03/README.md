@@ -616,7 +616,7 @@ Next, is to create a front end ui for our application. We will be using React fo
 
     useEffect(() => {
       const fetchTodos = async () => {
-        const { data } = await axios.get('/api/todos')
+        const { data } = await axios.get('/todos')
         setTodos(data)
       }
 
@@ -655,7 +655,7 @@ Next, is to create a front end ui for our application. We will be using React fo
 
     useEffect(() => {
       const fetchTodos = async () => {
-        const { data } = await axios.get('/api/todos')
+        const { data } = await axios.get('/todos')
         setTodos(data)
       }
 
@@ -665,7 +665,7 @@ Next, is to create a front end ui for our application. We will be using React fo
     const handleSubmit = async (e) => {
       e.preventDefault()
 
-      const { data } = await axios.post('/api/todos', {
+      const { data } = await axios.post('/todos', {
         title,
         description,
         status,
@@ -680,7 +680,7 @@ Next, is to create a front end ui for our application. We will be using React fo
     }
 
     const handleDelete = async (id) => {
-      await axios.delete(`/api/todos/${id}`)
+      await axios.delete(`/todos/${id}`)
       const newTodos = todos.filter(todo => todo._id !== id)
       setTodos(newTodos)
     }
@@ -719,4 +719,4 @@ Next, is to create a front end ui for our application. We will be using React fo
 
 Assuming no errors when saving all these files, our To-Do app should be ready and fully functional with the functionality discussed earlier: creating a task, deleting a task and viewing all your tasks.
 
-
+[Project 4: MEAN STACK](../project-03/README.md/)
