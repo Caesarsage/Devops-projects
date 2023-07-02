@@ -459,7 +459,9 @@ Next, is to create a front end ui for our application. We will be using React fo
 
 Add a file named script.js
 
-**`vi script.js`**
+```bash
+vi script.js
+```
 
 
 Copy and paste the Code below (controller configuration defined) into the script.js file.
@@ -507,7 +509,9 @@ Save and exit with `:wq`
 
 In public folder, create a file named index.html;
 
-**`vi index.html`**
+```bash
+vi index.html
+```
 
 Cpoy and paste the code below into index.html file.
 
@@ -566,7 +570,9 @@ Cpoy and paste the code below into index.html file.
 
 Change the directory back up to s
 
-**`cd ..`**
+```bash
+  cd ..
+```
 
 Start the server by running this command:
 
