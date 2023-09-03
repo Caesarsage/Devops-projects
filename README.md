@@ -29,3 +29,4 @@ The following projects will be implemented
 - ### Project 22: [ DEPLOYING APPLICATIONS INTO KUBERNETES CLUSTER](./project-22)
 - ### Project 23: [PERSISTING DATA IN KUBERNETES CLUSTER](./project-23)
 - ### Project 24: [ BUILDING ELASTIC KUBERNETES SERVICE WITH TERRAFORM](./project-24)
+- More Projects reference: [Azure Cert Project Based](https://github.com/madebygps/projects)
