@@ -1,7 +1,7 @@
 # DEVOPS PROJECTS AND DOCUMENTATIONS
 Darey.io Project Based Learning.
 
-In attempt to becoming a better DevOps engineer. i will be following similar projects based learning as Darey.io.
+In attempt to becoming a better DevOps engineer. i will be following similar projects based learning as Darey.io and cloudacademy.com labs.
 
 The following projects will be implemented
 
@@ -11,7 +11,7 @@ The following projects will be implemented
 - ### Project 4: [MEAN STACK IMPLEMENTATION](./project-04)[⭐]
 - ### Project 5: [IMPLEMENT A CLIENT SERVER AERCHITECTURE USING MYSQL DATABASE MANAGEMENT SYSTEM](./project-05/)[⭐]
 - ### Project 6: [ WEB SOLUTION WITH WORDPRESS](./project-06/)[]
-- ### Project 7: [ DEVOPS TOOLING WEBSITE WITH WORDPRESS](./project-07/)
+- ### Project 7: [ Deploying and Monitoring Web Apps in Azure App Service](./project-07/)[⭐]
 - ### Project 8: [ LOAD BALANCER SOLUTION WITH APACHE](./project-08)
 - ### Project 9: [CONTINOUS INTEGRATION PIPELINE FOR TOOLING WEBSITE](./project-09)
 - ### Project 10: [ LOAD BALANCER SOLUTION WITH NGNIX AND SSL/TLS](./project-10)
