@@ -1,5 +1,5 @@
 # DEVOPS PROJECTS AND DOCUMENTATIONS
-Darey.io Project Based Learning.
+Project Based Learning.
 
 In attempt to becoming a better DevOps engineer. i will be following similar projects based learning as Darey.io and cloudacademy.com labs.
 
