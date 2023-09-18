@@ -12,7 +12,8 @@ The following projects will be implemented
 - ### Project 5: [IMPLEMENT A CLIENT SERVER AERCHITECTURE USING MYSQL DATABASE MANAGEMENT SYSTEM](./project-05/)[⭐]
 - ### Project 6: [ WEB SOLUTION WITH WORDPRESS](./project-06/)[]
 - ### Project 7: [ Deploying and Monitoring Web Apps in Azure App Service](./project-07/)[⭐]
-- ### Project 8: [ LOAD BALANCER SOLUTION WITH APACHE](./project-08)
+- ### Project 8: [ Using Serverless Framework to deploy simple python function to AWS Lambda, API Gateway, and CloudWatch.](./project-08/)[⭐]
+<!-- - ### Project 8: [ LOAD BALANCER SOLUTION WITH APACHE](./project-08) -->
 - ### Project 9: [CONTINOUS INTEGRATION PIPELINE FOR TOOLING WEBSITE](./project-09)
 - ### Project 10: [ LOAD BALANCER SOLUTION WITH NGNIX AND SSL/TLS](./project-10)
 - ### Project 11: [ ANSIBLE CONFIGURATION MANAGEMENT (Automate project 7 to 10)](./project-11).
