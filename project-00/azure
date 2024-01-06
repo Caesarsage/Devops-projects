@@ -1,0 +1,159 @@
+#!/bin/bash
+
+
+random_string=$(cat /dev/urandom | tr -dc 'a-z0-9' | fold -w 8 | head -n 1)
+
+setup_azure() {
+  # Install az cli
+  curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
+  # Login
+  az login --use-device-code
+  echo "You are login to azure."
+}
+
+az_region_recommendation() {
+  regions_array=($( az account list-locations --query "[?metadata.regionCategory=='Recommended'].{Name:name}" -o tsv | head -n 10))
+
+  for index in "${!regions_array[@]}"; do
+    echo "$index => ${regions_array[$index]}"
+  done
+}
+
+az_select_region() {
+  local region_exist=false
+  while [[ "$region_exist" = false ]]; do
+    az_region_recommendation
+    read -p "Enter a region value: " az_selected_region
+
+    for j in "${!regions_array[@]}"
+    do
+      if [[ $az_selected_region == $j ]]; then
+        region_exist=true
+        az_selected_region="${regions_array[$j]}"
+        echo "Selected region is ${regions_array[$j]}"
+        echo
+        break
+      else
+        continue
+      fi
+    done
+  done
+}
+
+az_list_resource_groups() {
+  echo "==================== RESOURCE GROUPS LISTS=============================="
+  az group list --query "[].{Name:name}" -o jsonc
+  echo "=================================================="
+}
+
+az_create_resource_group() {
+  az_list_resource_groups
+  echo
+  read -p "Enter the name from your previous resource group above or a New one to create : " az_resource_group
+
+  echo
+  if [ $(az group exists --name $az_resource_group) = true ]; then
+    echo "You selected a previous resource group $az_resource_group in $az_selected_region "
+  else
+    echo "Creating resource group $az_resource_group in $az_selected_region"
+    az group create -g  $az_resource_group --location $az_selected_region | grep provisioningState
+  fi 
+
+  echo "=================================================="
+}
+
+az_list_storage_skus() {
+  echo "==================== STORAGE SKUS LISTS=============================="
+
+  sku_array=("Premium_LRS" "Premium_ZRS" "Standard_GRS" "Standard_GZRS" "Standard_LRS" "Standard_RAGRS" "Standard_RAGZRS" "Standard_ZRS")
+
+  for index in "${!sku_array[@]}"; do
+    echo "$index => ${sku_array[$index]}"
+  done
+}
+
+az_select_sku() {
+  local sku_valid=false
+  while [[ "$sku_valid" = false ]]; do
+    az_list_storage_skus
+    read -p "Slect a valid storage SKU: " az_storage_sku
+
+    for j in "${!sku_array[@]}"
+    do
+      if [[ $az_storage_sku == $j ]]; then
+        sku_valid=true
+        az_storage_sku="${sku_array[$j]}"
+        echo "Selected storage sku is ${sku_array[$j]}"
+        echo
+        break
+      else
+        continue
+      fi
+    done
+  done
+}
+
+az_list_storage_accounts() {
+  echo "==================== STORAGE ACCOUNTS LISTS=============================="
+  az storage account list --query "[].{Name:name}" -o jsonc
+  echo "=================================================="
+}
+
+az_create_storage_account() {
+  az_list_storage_accounts
+
+  echo
+  echo "Creating storage account "
+  echo
+
+  read -p "Enter a new storage account name: " storage_account_name
+
+  if az storage account check-name --name $storage_account_name --query nameAvailable -o tsv | grep -q "false"; then
+    echo "=======================================
+      Storage account name not unique $storage_account_name. We have updated the name to $storage_account_name$random_string
+      ============================================="
+    storage_account_name="${storage_account_name}${random_string}"
+  fi
+
+  echo
+
+  az_select_sku
+  
+  az storage account create --name $storage_account_name --resource-group $az_resource_group --location $az_selected_region --sku $az_storage_sku --encryption-services blob | grep provisioningState
+  echo "=================================================="
+  echo
+  az_create_storage_container
+}
+
+az_select_subscription() {
+  echo "==================== SUBSCRIPTIONS LISTS=============================="
+
+  az account list --query "[].{Name:name, ID:id}" -o jsonc
+
+  echo "=================================================="
+}
+
+az_create_storage_container() {
+  az_select_subscription
+
+  echo "==================== CREATING STORAGE CONTAINER =============================="
+
+  read -p "Enter your chosen subscription ID: " subscription_id
+  read -p "Enter a container name: " container_name
+
+  az ad signed-in-user show --query id -o tsv | az role assignment create --role "Storage Blob Data Contributor" --assignee @- --scope "/subscriptions/$subscription_id/resourceGroups/$az_resource_group/providers/Microsoft.Storage/storageAccounts/$storage_account_name"
+
+  az storage container create --account-name $storage_account_name --name $container_name --auth-mode login
+}
+
+az_list_blobs() {
+  az storage blob list --account-name $storage_account_name --container-name $container_name --output table --auth-mode login
+}
+
+az_destroy_resource_group() {
+  az_list_resource_groups
+  read -p "Enter the name of the resource group you want to delete: " az_resource_group
+  az group delete --name $az_resource_group --yes
+
+  az_list_resource_groups
+}

@@ -1,0 +1,99 @@
+#!/bin/bash
+
+source ./azure
+
+setup_aws() {
+  sudo apt-get install awscli -y
+  # Login
+  aws configure
+  echo "You are login to aws."
+
+}
+
+setup_gcp() {
+  sudo apt-get install gcloud -y
+  gcloud auth login
+  echo "You are login to gcp."
+}
+
+start_menu() {
+  echo "==================== START =============================="
+  echo "Thank you for using this script"
+  echo "======================================================="
+  echo
+  echo "1. Create new upload"
+  echo "2. Destroy upload resources"
+  echo "3. Exit"
+}
+
+print_menu() {
+  echo "Select cloud provider"
+  echo "1. Azure"
+  echo "2. AWS"
+  echo "3. GCP"
+  echo "4. Exit"
+}
+
+az_start() {
+  setup_azure
+  az_create_resource_group
+  az_create_storage_account
+  az_create_container
+  az_create_file_share
+}
+
+# start menu and print_menu
+while true; do
+  start_menu
+  read -p "Enter your choice: " choice
+  case $choice in
+    1)
+      print_menu
+      read -p "Enter your choice: " choice
+      case $choice in
+        1)
+          az_start
+          ;;
+        2)
+          setup_aws
+          ;;
+        3)
+          setup_gcp
+          ;;
+        4)
+          exit 0
+          ;;
+        *)
+          echo "Invalid choice"
+          ;;
+      esac
+      ;;
+    2)
+      print_menu
+      read -p "Enter your choice: " choice
+      case $choice in
+          1)
+            az_destroy_resource_group
+            ;;
+          2)
+            setup_aws
+            ;;
+          3)
+            setup_gcp
+            ;;
+          4)
+            exit 0
+            ;;
+          *)
+            echo "Invalid choice"
+            ;;
+        esac
+        ;;
+    3)
+      exit 0
+      ;;
+    *)
+      echo "Invalid choice"
+      ;;
+  esac
+done

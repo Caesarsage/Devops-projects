@@ -1,11 +1,12 @@
 # DEVOPS PROJECTS AND DOCUMENTATIONS
 Project Based Learning.
 
-In attempt to becoming a better DevOps engineer. i will be following similar projects based learning as Darey.io and cloudacademy.com labs.
+In attempt to becoming a better DevOps engineer. i will be following similar projects based learning as Darey.io, cloudacademy.com labs and others.
 
 The following projects will be implemented
 
-- ### Project 1: [ LAMP STACK IMPLEMENTATION](./project-01/) [⭐]
+- ### Project 0: [Multi Cloud Bash File Uploader](./project-00/) [inprogress]
+- ### Project 1: [LAMP STACK IMPLEMENTATION](./project-01/) [⭐]
 - ### Project 2: [LEMP STACK IMPLEMENTATION](./project-02/) [⭐]
 - ### Project 3: [MERN WEB STACK IMPLEMENTATION](./project-03/)[⭐]
 - ### Project 4: [MEAN STACK IMPLEMENTATION](./project-04)[⭐]
@@ -30,4 +31,4 @@ The following projects will be implemented
 - ### Project 22: [ DEPLOYING APPLICATIONS INTO KUBERNETES CLUSTER](./project-22)
 - ### Project 23: [PERSISTING DATA IN KUBERNETES CLUSTER](./project-23)
 - ### Project 24: [ BUILDING ELASTIC KUBERNETES SERVICE WITH TERRAFORM](./project-24)
-- ### More Projects reference: [Azure Cert Project Based](https://github.com/madebygps/projects)
+<!-- - ### More Projects reference: [Azure Cert Project Based](https://github.com/madebygps/projects) -->
