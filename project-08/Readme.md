@@ -70,7 +70,9 @@ serverless
 }' --profile personalCaesarAcc
 ```
 
-> This command creates a role named serverlesslabs on my personalCaesarAcc, hence (--profile) if your credentials are default, then ignore and attaches the trust-policy.json policy to it. This policy allows the role to be assumed by the AWS Lambda service.
+> This command creates a role named serverlesslabs on my personalCaesarAcc, hence (--profile) if your credentials are default, then ignore.
+
+This policy allows the role to be assumed by the AWS Lambda service.
 
 ![create-role](images/create-role.png)
 
@@ -148,7 +150,8 @@ functions:
         path: first
         method: get     
 ```
- 
+ > This command creates the template for serverless framework to deploy on my personalCaesarAcc AWS account configured on my local machine, hence (--profile) if your credentials are default, then ignore.
+
 ## Deploying the Microservice
 
 - Enter the following command to deploy the microservice on AWS:
