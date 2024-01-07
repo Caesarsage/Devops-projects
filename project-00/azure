@@ -1,5 +1,6 @@
 #!/bin/bash
 
+source ./shared/create_text
 
 random_string=$(cat /dev/urandom | tr -dc 'a-z0-9' | fold -w 8 | head -n 1)
 
@@ -144,6 +145,16 @@ az_create_storage_container() {
   az ad signed-in-user show --query id -o tsv | az role assignment create --role "Storage Blob Data Contributor" --assignee @- --scope "/subscriptions/$subscription_id/resourceGroups/$az_resource_group/providers/Microsoft.Storage/storageAccounts/$storage_account_name"
 
   az storage container create --account-name $storage_account_name --name $container_name --auth-mode login
+
+  echo "=================================================="
+}
+
+az_upload_file() {
+  create_file
+
+  echo "=================== UPLOADING TO BLOB STORAGE  ==============================="
+
+  az storage blob upload --account-name $storage_account_name --container-name $container_name --name $file_name --file $file_path --auth-mode login
 }
 
 az_list_blobs() {
